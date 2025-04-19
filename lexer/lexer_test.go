@@ -7,7 +7,6 @@ import (
 	"monkey/token"
 )
 
-
 func logLexer(l *Lexer) {
 	fmt.Printf("pos: %d\nreadpos: %d\nch: %c\n", l.position, l.readPosition, l.ch)
 }
@@ -15,7 +14,6 @@ func logLexer(l *Lexer) {
 func logToken(t token.Token) {
 	fmt.Printf("type: %s\nliteral: %s\n", t.Type, t.Literal)
 }
-
 
 func TestNewToken(t *testing.T) {
 	input := "=+(){},;"
