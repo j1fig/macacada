@@ -48,8 +48,8 @@ func (l *Lexer) NextToken() token.Token {
 			tok.Type = token.LookupIdent(tok.Literal)
 			return tok
 		} else {
-			if isNumber(l.ch) {
-				tok.Literal = l.readInt()
+			if isDigit(l.ch) {
+				tok.Literal = l.readNumber()
 				tok.Type = token.INT
 				return tok
 			}
@@ -82,11 +82,11 @@ func (l *Lexer) readIdentifier() string {
 	return l.input[position:l.position]
 }
 
-func (l *Lexer) readInt() string {
+func (l *Lexer) readNumber() string {
 	position := l.position
-	// while current char is a number character, we should
+	// while current char is a digit character, we should
 	// move to the next character.
-	for isNumber(l.ch) {
+	for isDigit(l.ch) {
 		l.readChar()
 	}
 	return l.input[position:l.position]
@@ -102,7 +102,7 @@ func isLetter(ch byte) bool {
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
 
-func isNumber(ch byte) bool {
+func isDigit(ch byte) bool {
 	return '0' <= ch && ch <= '9'
 }
 
