@@ -72,7 +72,6 @@ func (l *Lexer) readChar() {
 	l.readPosition++
 }
 
-
 func (l *Lexer) readIdentifier() string {
 	position := l.position
 	// while current char is a letter character, we should
@@ -83,7 +82,7 @@ func (l *Lexer) readIdentifier() string {
 	return l.input[position:l.position]
 }
 
-func (l* Lexer) readInt() string {
+func (l *Lexer) readInt() string {
 	position := l.position
 	// while current char is a number character, we should
 	// move to the next character.
@@ -93,23 +92,19 @@ func (l* Lexer) readInt() string {
 	return l.input[position:l.position]
 }
 
-
 func (l *Lexer) skipWhitespace() {
 	for l.ch == ' ' || l.ch == '\n' || l.ch == '\t' || l.ch == '\r' {
 		l.readChar()
 	}
 }
 
-
 func isLetter(ch byte) bool {
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
 
-
 func isNumber(ch byte) bool {
 	return '0' <= ch && ch <= '9'
 }
-
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token{
